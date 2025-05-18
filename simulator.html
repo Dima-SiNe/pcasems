@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D веб-тренажер для сборки персонального компьютера</title>
+  <link rel="stylesheet" href="/src/simulator.css" />
+</head>
+<body>
+
+  <div id="menu">
+    <button onclick="goMain()">🏠 Главная</button>
+    <button onclick="doRestart()">🔄 Заново</button>
+    <button onclick="checkReadiness()">✅ Готово</button>
+  </div>
+
+  <div id="tooltip"></div>
+  <div id="error-counter">Ошибки: 0</div>
+  <div id="notifications-container"></div>
+
+  <div class="modal" id="successModal">
+    <div class="modal-content">
+      <h2>🎉 ПК собран!</h2>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <button class="close-btn" onclick="closeSuccess()">ОК</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/simulator.js"></script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/* Обнуление стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Базовые стили */
+html, body {
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #e8ebf0, #f8f9fa);
+  color: #212529;
+}
+
+/* Подсказка */
+#tooltip {
+  position: absolute;
+  padding: 8px 12px;
+  background: rgba(33, 37, 41, 0.9);
+  color: #fff;
+  font-size: 13px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+/* Счетчик ошибок */
+#error-counter {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #dc3545;
+  background-color: #fff5f5;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+  border: 1px solid #f5c2c7;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#notifications-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  align-items: flex-end;
+}
+
+.notification {
+  display: inline-block;
+  padding: 14px 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-out forwards, fadeOut 0.5s ease-in-out 3.5s forwards;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  max-width: 450px;
+  word-break: break-word;
+}
+
+.notification.success {
+  background: linear-gradient(135deg, #28a745, #218838);
+}
+
+.notification.error {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Кнопки меню */
+#menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 14px;
+  z-index: 1000;
+}
+
+#menu button {
+  background: linear-gradient(135deg, #3ddc84, #00a878);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+#menu button:hover {
+  background: linear-gradient(135deg, #31c478, #008f6b);
+  transform: scale(1.05);
+}
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Содержимое модального окна */
+.modal-content {
+  background-color: #fff;
+  margin: 8% auto;
+  padding: 30px 40px;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  position: relative;
+  animation: modalShow 0.4s ease;
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #212529;
+}
+
+.modal-body {
+  font-size: 16px;
+  color: #495057;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  padding-right: 10px;
+}
+
+/* Кнопка закрытия */
+.close-btn {
+  padding: 12px 28px;
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.close-btn:hover {
+  background: linear-gradient(135deg, #45a049, #2e7d32);
+  transform: scale(1.05);
+}

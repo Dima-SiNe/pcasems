@@ -1,3 +1,4 @@
+import './index.css'
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -94,7 +95,7 @@ renderer.setAnimationLoop(animate);
 
 // Начать
 window.startGame = function () {
-  window.location.href = 'simulator.html';
+  window.location.href = '/simulator.html';
 };
 
 // Правила

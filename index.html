@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D веб-тренажер для сборки персонального компьютера</title>
+  <script type="module" crossorigin src="/pcasems/assets/index-BtH9emY6.js"></script>
+  <link rel="stylesheet" crossorigin href="/pcasems/assets/index-PVRpGr5q.css">
+</head>
+<body>
+  <div class="overlay">
+    <div class="glass-card">
+      <h1 class="title">Тренажер сборки ПК</h1>
+      <div class="actions">
+        <button class="primary-btn" onclick="startGame()">🚀 Начать</button>
+        <button class="secondary-btn" onclick="showRules()">📘 Правила</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="rulesModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeRules()">&times;</button>
+      <h2>📘 Правила тренажера</h2>
+      <div class="modal-body">
+        <p>Ваша задача — правильно собрать компьютер, перетаскивая комплектующие в нужные места. Следите за подсказками и не допускайте ошибок!</p>
+      </div>
+      <button class="modal-ok" onclick="closeRules()">ОК</button>
+    </div>
+  </div>
+
+</body>
+</html>

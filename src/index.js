@@ -95,7 +95,7 @@ renderer.setAnimationLoop(animate);
 
 // Начать
 window.startGame = function () {
-  window.location.href = '/simulator.html';
+  window.location.href = import.meta.env.BASE_URL + 'simulator.html';
 };
 
 // Правила

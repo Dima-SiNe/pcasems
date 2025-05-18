@@ -633,7 +633,7 @@ window.addEventListener('mousedown', (event) => {
 
 window.goMain = function () {
   // Перейти на главную страницу сайта
-  window.location.href = '/';
+  window.location.href = import.meta.env.BASE_URL;
 }
 
 window.doRestart = function () {
@@ -668,7 +668,7 @@ function showSuccessModal(errorsCount) {
 
 window.closeSuccess = function () {
   // Переход на главную
-  window.location.href = '/';
+  window.location.href = import.meta.env.BASE_URL;
 }
 
 window.checkReadiness = function () {

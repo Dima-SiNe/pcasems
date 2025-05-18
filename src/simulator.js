@@ -167,7 +167,7 @@ addInteractiveModel({ path: 'models/In Game PC/Power supply HDD wire.glb', name:
 addInteractiveModel({ path: 'models/In Game PC/Power supply screw.glb', name: 'Винты крепления блока питания' });
 addInteractiveModel({ path: 'models/In Game PC/Power supply videocard wires.glb', name: 'Провод питания видеокарты' });
 addInteractiveModel({ path: 'models/In Game PC/Power supply.glb', name: 'Блок питания' });
-addInteractiveModel({ path: 'models/In Game PC/SSD screw.glb', name: 'Винт крепеления SSD' });
+addInteractiveModel({ path: 'models/In Game PC/SSD screw.glb', name: 'Винт крепления SSD' });
 addInteractiveModel({ path: 'models/In Game PC/SSD.glb', name: 'SSD M.2 накопитель' });
 addInteractiveModel({ path: 'models/In Game PC/Videocard power slot.glb', name: 'Разъем для подключения питания видеокарты' });
 addInteractiveModel({ path: 'models/In Game PC/Videocard screw.glb', name: 'Винты крепления видеокарты' });
@@ -307,6 +307,7 @@ function incrementErrors() {
 let selectedComponent = null; // Хранит выбранный интерактивный компонент
 
 const assemblyRules = [ //Набор правил подключения
+  // Подключение несутановленного
   {
     selectedName: 'Кулер для процессора (не установлен)',
     targetName: 'Место для крепления кулера',
@@ -368,6 +369,64 @@ const assemblyRules = [ //Набор правил подключения
     requires: ['Винты крепления материнской платы'],
     selectedVisible: false
   },
+  // Попытка повторного подключения вариации предыдущих комплектующих, когда они уже установлены
+  {
+    selectedName: 'Кулер для процессора',
+    targetName: 'Место для крепления кулера',
+    show: ['Кулер для процессора'],
+    requires: ['Нанесенная термопаста'],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'Процессор',
+    targetName: 'Разъем для подключения процессора',
+    show: ['Процессор'],
+    requires: ['Винты крепления материнской платы'],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'HDD накопитель',
+    targetName: 'Место для крепления HDD',
+    show: ['HDD накопитель'],
+    requires: [],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'Оперативная память',
+    targetName: 'Разъем для подключения оперативной памяти',
+    show: ['Оперативная память'],
+    requires: ['Винты крепления материнской платы'],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'Материнская плата',
+    targetName: 'Место для крепления материнской платы',
+    show: ['Материнская плата'],
+    requires: [],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'Блок питания',
+    targetName: 'Место для крепления блока питания',
+    show: ['Блок питания'],
+    requires: [],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'SSD M.2 накопитель',
+    targetName: 'Разъем для подключения SSD',
+    show: ['SSD M.2 накопитель'],
+    requires: ['Винты крепления материнской платы'],
+    selectedVisible: false
+  },
+  {
+    selectedName: 'Видеокарта',
+    targetName: 'Разъем для подключения видеокарты',
+    show: ['Видеокарта'],
+    requires: ['Винты крепления материнской платы'],
+    selectedVisible: false
+  },
+  // Работа с отверткой и термопастой
   {
     selectedName: 'Отвертка',
     targetName: 'Место для крепления кулера',
@@ -399,7 +458,7 @@ const assemblyRules = [ //Набор правил подключения
   {
     selectedName: 'Отвертка',
     targetName: 'Место для крепления SSD',
-    show: ['Винт крепеления SSD'],
+    show: ['Винт крепления SSD'],
     requires: ['SSD M.2 накопитель'],
     selectedVisible: true
   },
@@ -417,7 +476,7 @@ const assemblyRules = [ //Набор правил подключения
     requires: [],
     selectedVisible: false
   },
-  //тут подключение проводов
+  // Подключение проводов
   {
     selectedName: 'Аудио разъемы',
     targetName: 'Разъем для подключения аудио',
@@ -586,7 +645,7 @@ window.addEventListener('mousedown', (event) => {
             if (unmetDeps.length > 0) {
               setEmissive(selectedComponent);
               selectedComponent = null;
-              showNotification('Ошибка: Вы еще не все предворительные действия сделали.', 'error');
+              showNotification('Ошибка: Вы ещё не все предварительные действия выполнили.', 'error');
               incrementErrors();
               return;
             }
@@ -648,16 +707,16 @@ function showSuccessModal(errorsCount) {
   let message = ``;
   
   if (errorsCount === 0 ) {
-    message += `Безупречно! Ты не допустил ни единой ошибки!<br><br>`;
+    message += `Безупречно! Вы не допустили ни единой ошибки!<br><br>`;
   }
   else if (errorsCount <= 3) {
-    message += `Отличная работа! Ты почти не ошибался!<br><br>`;
+    message += `Отличная работа! Вы почти не ошибались!<br><br>`;
   } else if (errorsCount <= 5) {
     message += `Хороший результат, но все еще есть над чем поработать.<br><br>`;
   } else if (errorsCount <= 10) {
-    message += `ПК собран, но постарайся быть внимательнее в следующий раз.<br><br>`;
+    message += `Компьютер собран, но постарайтесь быть внимательнее в следующий раз.<br><br>`;
   } else {
-    message += `Собрать компьютер удалось, но допущено много ошибок.<br><br>`;
+    message += `Компьютер собран, но допущено много ошибок.<br><br>`;
   }
 
   message += `Количество допущенных ошибок в процессе: ${errorsCount}`;
@@ -683,6 +742,6 @@ window.checkReadiness = function () {
   } else {
     // Есть неустановленные элементы — показываем их список
     incrementErrors();
-    showNotification('Компьютер еще не полностью собран!', 'error');
+    showNotification('Компьютер еще не полностью собран.', 'error');
   }
 }

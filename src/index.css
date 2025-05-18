@@ -94,28 +94,120 @@ body, html {
   display: none;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal.show {
+  display: flex; /* показываем только когда добавлен класс show */
 }
 
 .modal-content {
   position: relative;
-  margin: 6% auto;
   padding: 30px 40px;
   max-width: 600px;
-  width: 90%;
+  width: 100%;
+  max-height: 80vh;
   background: #212529;
   border-radius: 16px;
   color: #f8f9fa;
   box-shadow: 0 12px 36px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
 }
 
-.modal-content h2 {
+/* Заголовок модалки 📘 Правила тренажера */
+.modal-content > h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4a90e2; /* приятный синий */
+  text-shadow: 0 0 6px rgba(74, 144, 226, 0.7);
+  margin-bottom: 28px;
+}
+
+/* Заголовки разделов внутри модалки */
+.modal-body .section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #3498db; /* мягкий синий */
+  margin-top: 28px;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* Текст с эмодзи в начале — немного меньше и сжатый по высоте */
+.modal-body .big-text {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Цвет для "зелёного" выделения — менее кислотный, мягкий зелёный */
+.modal-body .highlight-green {
+  color: #00e695;
+  text-shadow: 0 0 2px rgba(39, 174, 96, 0.7);
+  font-weight: 700;
+}
+
+/* Списки внутри модалки */
+.modal-body ol,
+.modal-body ul {
+  padding-left: 22px;
   margin-bottom: 20px;
-  font-size: 22px;
+}
+
+.modal-body li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+  font-size: 15px;
+  color: #e1e4e8;
+}
+
+/* Немного больше межстрочного интервала для параграфов */
+.modal-body p {
+  margin-bottom: 18px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #d4d7dc;
+}
+
+/* Убираем переносы у некоторых заголовков и важных текстов, чтобы они не ломались */
+@media (max-width: 480px) {
+  .modal-body .welcome-text,
+  .modal-body .final-text {
+    white-space: normal;
+  }
 }
 
 .modal-body {
   font-size: 15px;
   line-height: 1.6;
+  overflow-y: auto;
+  max-height: calc(80vh - 120px);
+  padding-right: 10px;
+}
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+
+.modal-content h2 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #4a90e2;
+  text-shadow: 0 0 6px rgba(74, 144, 226, 0.7);
+  margin-bottom: 24px;
+  white-space: nowrap;
 }
 
 .modal-close {
@@ -134,12 +226,11 @@ body, html {
 }
 
 .modal-ok {
-  display: block;
-  margin: 24px auto 0; /* сверху 24px, по центру по горизонтали */
+  margin-top: 24px;
   padding: 12px 36px;
-  background: #343a40; /* темно-серый фон, близкий к модалке */
-  color: #f8f9fa; /* светлый текст */
-  border: 1.5px solid #495057; /* легкий контур */
+  background: #343a40;
+  color: #f8f9fa;
+  border: 1.5px solid #495057;
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
@@ -147,11 +238,29 @@ body, html {
   transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-align: center;
-  user-select: none;
+  align-self: center;
 }
 
 .modal-ok:hover {
-  background: #495057; /* чуть светлее при наведении */
+  background: #495057;
   color: #e9ecef;
   transform: scale(1.05);
+}
+
+.watermark {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 9999;
+  pointer-events: none;
+  line-height: 1.4;
+}
+
+.watermark strong {
+  color: #ffffff;
+  font-weight: 700;
 }

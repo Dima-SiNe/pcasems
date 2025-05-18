@@ -100,17 +100,17 @@ window.startGame = function () {
 
 // Правила
 window.showRules = function () {
-  document.getElementById('rulesModal').style.display = 'block';
+  document.getElementById('rulesModal').classList.add('show');
 };
 
 window.closeRules = function () {
-  document.getElementById('rulesModal').style.display = 'none';
+  document.getElementById('rulesModal').classList.remove('show');
 };
 
-// (Необязательно) Закрытие по клику вне модального окна
+// Закрытие по клику вне модального окна
 window.onclick = function (event) {
   const modal = document.getElementById('rulesModal');
   if (event.target === modal) {
-    modal.style.display = 'none';
+    modal.classList.remove('show');
   }
 };

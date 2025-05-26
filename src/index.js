@@ -18,7 +18,6 @@ const height = 70; // Высота камеры
 // Рендерер
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.shadowMap.enabled = true; // Включаем тени
 document.body.appendChild(renderer.domElement);
 
 // === Освещение ===
